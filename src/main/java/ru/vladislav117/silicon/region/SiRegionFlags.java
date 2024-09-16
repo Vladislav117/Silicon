@@ -69,8 +69,8 @@ public final class SiRegionFlags {
     }};
 
     static final HashSet<EntityType> entityStorages = new HashSet<>() {{
-        add(EntityType.MINECART_CHEST);
-        add(EntityType.MINECART_HOPPER);
+        add(EntityType.CHEST_MINECART);
+        add(EntityType.HOPPER_MINECART);
         add(EntityType.CHEST_BOAT);
     }};
 

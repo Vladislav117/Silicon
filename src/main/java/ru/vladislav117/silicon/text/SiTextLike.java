@@ -1,7 +1,7 @@
 package ru.vladislav117.silicon.text;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.gson.JSONComponentSerializerProviderImpl;
+import net.kyori.adventure.text.serializer.gson.impl.JSONComponentSerializerProviderImpl;
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer;
 import org.jetbrains.annotations.Nullable;
 import ru.vladislav117.silicon.message.SiMessageTask;

@@ -3,7 +3,9 @@ package ru.vladislav117.silicon.item;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.jetbrains.annotations.Nullable;
+import ru.vladislav117.silicon.namespace.SiNamespace;
 
 import java.util.UUID;
 
@@ -17,7 +19,7 @@ public class SiAttributeModifier {
     protected double value = 1;
     protected AttributeModifier.Operation operation = AttributeModifier.Operation.MULTIPLY_SCALAR_1;
     @Nullable
-    protected EquipmentSlot slot = null;
+    protected EquipmentSlotGroup slot = null;
 
     /**
      * Создание нового модификатора атрибутов.
@@ -28,7 +30,7 @@ public class SiAttributeModifier {
      * @param operation Операция со значением
      * @param slot      Слот применения атрибута или null. Если задано null, атрибут применяется во всех слотах
      */
-    public SiAttributeModifier(@Nullable String name, Attribute attribute, double value, AttributeModifier.Operation operation, @Nullable EquipmentSlot slot) {
+    public SiAttributeModifier(@Nullable String name, Attribute attribute, double value, AttributeModifier.Operation operation, @Nullable EquipmentSlotGroup slot) {
         this.name = name;
         this.attribute = attribute;
         this.value = value;
@@ -44,7 +46,7 @@ public class SiAttributeModifier {
      * @param operation Операция со значением
      * @param slot      Слот применения атрибута или null. Если задано null, атрибут применяется во всех слотах
      */
-    public SiAttributeModifier(Attribute attribute, double value, AttributeModifier.Operation operation, @Nullable EquipmentSlot slot) {
+    public SiAttributeModifier(Attribute attribute, double value, AttributeModifier.Operation operation, @Nullable EquipmentSlotGroup slot) {
         this.attribute = attribute;
         this.value = value;
         this.operation = operation;
@@ -58,7 +60,7 @@ public class SiAttributeModifier {
      * @param value     Значение атрибута
      * @param slot      Слот применения атрибута или null. Если задано null, атрибут применяется во всех слотах
      */
-    public SiAttributeModifier(Attribute attribute, double value, @Nullable EquipmentSlot slot) {
+    public SiAttributeModifier(Attribute attribute, double value, @Nullable EquipmentSlotGroup slot) {
         this.attribute = attribute;
         this.value = value;
         this.slot = slot;
@@ -162,7 +164,7 @@ public class SiAttributeModifier {
      * @return Слот или null, если не задан.
      */
     @Nullable
-    public EquipmentSlot getSlot() {
+    public EquipmentSlotGroup getSlot() {
         return slot;
     }
 
@@ -172,7 +174,7 @@ public class SiAttributeModifier {
      * @param slot Слот или null, если нужно задать любой слот
      * @return Этот же модификатор атрибутов.
      */
-    public SiAttributeModifier setSlot(@Nullable EquipmentSlot slot) {
+    public SiAttributeModifier setSlot(@Nullable EquipmentSlotGroup slot) {
         this.slot = slot;
         return this;
     }
@@ -185,7 +187,7 @@ public class SiAttributeModifier {
     public AttributeModifier buildAttributeModifier() {
         String name = this.name;
         if (name == null) name = attribute.name();
-        if (slot == null) return new AttributeModifier(UUID.fromString(name), name, value, operation);
-        return new AttributeModifier(UUID.fromString(name), name, value, operation, slot);
+        if (slot == null) return new AttributeModifier(SiNamespace.getKey(name), value, operation);
+        return new AttributeModifier(SiNamespace.getKey(name), value, operation, slot);
     }
 }

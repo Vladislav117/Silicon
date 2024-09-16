@@ -50,7 +50,7 @@ public class SiLiquids {
         add(EntityType.HUSK);
         add(EntityType.LLAMA);
         add(EntityType.MAGMA_CUBE);
-        add(EntityType.MUSHROOM_COW);
+        add(EntityType.MOOSHROOM);
         add(EntityType.MULE);
         add(EntityType.OCELOT);
         add(EntityType.PANDA);
@@ -72,7 +72,7 @@ public class SiLiquids {
         add(EntityType.SKELETON_HORSE);
         add(EntityType.SLIME);
         add(EntityType.SNIFFER);
-        add(EntityType.SNOWMAN);
+        add(EntityType.SNOW_GOLEM);
         add(EntityType.SPIDER);
         add(EntityType.SQUID);
         add(EntityType.STRAY);
@@ -103,7 +103,7 @@ public class SiLiquids {
     }};
 
     public static HashSet<EntityType> lowTemperatureIgnoreEntities = new HashSet<>() {{
-        add(EntityType.SNOWMAN);
+        add(EntityType.SNOW_GOLEM);
         add(EntityType.STRIDER);
     }};
 

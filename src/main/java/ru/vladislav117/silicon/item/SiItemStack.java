@@ -234,7 +234,7 @@ public class SiItemStack {
         if (attributeModifierMultimap == null) return attributeModifiers;
         for (Attribute attribute : attributeModifierMultimap.keySet()) {
             for (AttributeModifier attributeModifier : attributeModifierMultimap.get(attribute)) {
-                attributeModifiers.add(new SiAttributeModifier(attributeModifier.getName(), attribute, attributeModifier.getAmount(), attributeModifier.getOperation(), attributeModifier.getSlot()));
+                attributeModifiers.add(new SiAttributeModifier(attributeModifier.getName(), attribute, attributeModifier.getAmount(), attributeModifier.getOperation(), attributeModifier.getSlotGroup()));
             }
         }
         return attributeModifiers;

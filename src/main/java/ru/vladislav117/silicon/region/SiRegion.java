@@ -378,7 +378,7 @@ public class SiRegion {
                     });
                 }
                 if (value) {
-                    itemStack.setEnchantment(Enchantment.LUCK, 1);
+                    itemStack.setEnchantment(Enchantment.LURE, 1); // TODO: Replace to luck
                     itemStack.addFlags(ItemFlag.HIDE_ENCHANTS);
                 }
             }});
