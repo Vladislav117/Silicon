@@ -9,20 +9,17 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
-import ru.vladislav117.silicon.color.SiColor;
 import ru.vladislav117.silicon.color.SiPalette;
 import ru.vladislav117.silicon.file.SiFile;
 import ru.vladislav117.silicon.icon.SiIcon;
 import ru.vladislav117.silicon.inventory.SiPlayerInventoryUtils;
 import ru.vladislav117.silicon.item.SiItemType;
 import ru.vladislav117.silicon.item.SiItemTypes;
-import ru.vladislav117.silicon.log.SiLog;
 import ru.vladislav117.silicon.menu.SiMenu;
 import ru.vladislav117.silicon.menu.SiMenuElement;
 import ru.vladislav117.silicon.menu.SiMenus;
 import ru.vladislav117.silicon.node.SiNode;
 import ru.vladislav117.silicon.text.SiText;
-import ru.vladislav117.silicon.text.SiTextContainer;
 import ru.vladislav117.silicon.text.SiTextLike;
 import ru.vladislav117.silicon.ticker.SiTicker;
 
@@ -68,13 +65,13 @@ public class SiRegion {
      */
     public static SiRegion load(SiNode node) {
         SiRegion region = new SiRegion(node.getString("name"), new Location(Bukkit.getWorld(node.getString("world")), node.getDouble("x"), node.getDouble("y"), node.getDouble("z")), new Vector(node.getDouble("width"), node.getDouble("height"), node.getDouble("length")));
-        node.get("members").forEach(member -> {
+        node.getOrThrown("members").forEach(member -> {
             region.getMembers().add(member.asString());
         });
-        node.get("owners").forEach(owner -> {
+        node.getOrThrown("owners").forEach(owner -> {
             region.getOwners().add(owner.asString());
         });
-        node.get("flags").forEach((flag, value) -> {
+        node.getOrThrown("flags").forEach((flag, value) -> {
             region.getFlags().put(flag, value.asBoolean());
         });
         if (node.hasChild("item_type")) region.itemTypeName = node.getString("item_type");
@@ -264,21 +261,21 @@ public class SiRegion {
      */
     public SiNode toNode() {
         SiNode node = SiNode.emptyMap();
-        node.setString("name", name);
-        node.setList("owners", new ArrayList<>());
-        for (String owner : owners) node.get("owners").addString(owner);
-        node.setList("members", new ArrayList<>());
-        for (String member : members) node.get("members").addString(member);
-        node.setMap("flags", new HashMap<>());
-        for (String flag : flags.keySet()) node.get("flags").setBoolean(flag, flags.get(flag));
-        node.setDouble("x", location.getX());
-        node.setDouble("y", location.getY());
-        node.setDouble("z", location.getZ());
-        node.setDouble("width", size.getX());
-        node.setDouble("height", size.getY());
-        node.setDouble("length", size.getZ());
-        node.setString("world", location.getWorld().getName());
-        if (itemTypeName != null) node.setString("item_type", itemTypeName);
+        node.set("name", name);
+        node.set("owners", new ArrayList<>());
+        for (String owner : owners) node.getOrThrown("owners").add(owner);
+        node.set("members", new ArrayList<>());
+        for (String member : members) node.getOrThrown("members").add(member);
+        node.set("flags", new HashMap<>());
+        for (String flag : flags.keySet()) node.getOrThrown("flags").set(flag, flags.get(flag));
+        node.set("x", location.getX());
+        node.set("y", location.getY());
+        node.set("z", location.getZ());
+        node.set("width", size.getX());
+        node.set("height", size.getY());
+        node.set("length", size.getZ());
+        node.set("world", location.getWorld().getName());
+        if (itemTypeName != null) node.set("item_type", itemTypeName);
         return node;
     }
 

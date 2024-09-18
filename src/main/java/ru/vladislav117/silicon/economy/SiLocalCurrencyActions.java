@@ -17,14 +17,14 @@ public class SiLocalCurrencyActions implements SiCurrencyActions {
 
     @Override
     public void setBalance(SiCurrency currency, String account, int value) {
-        dataManager.get(account).setInteger(currency.getName(), value);
+        dataManager.get(account).set(currency.getName(), value);
         dataManager.save(account);
     }
 
     @Override
     public void addBalance(SiCurrency currency, String account, int value) {
         SiNode balances = dataManager.get(account);
-        balances.setInteger(currency.getName(), balances.getInteger(currency.getName(), 0) + value);
+        balances.set(currency.getName(), balances.getInteger(currency.getName(), 0) + value);
         dataManager.save(account);
     }
 
@@ -34,8 +34,8 @@ public class SiLocalCurrencyActions implements SiCurrencyActions {
         int senderBalance = senderBalances.getInteger(currency.getName(), 0);
         if (value > senderBalance) return false;
         SiNode receiverBalances = dataManager.get(receiver);
-        senderBalances.setInteger(currency.getName(), senderBalances.getInteger(currency.getName(), 0) - value);
-        receiverBalances.setInteger(currency.getName(), receiverBalances.getInteger(currency.getName(), 0) + value);
+        senderBalances.set(currency.getName(), senderBalances.getInteger(currency.getName(), 0) - value);
+        receiverBalances.set(currency.getName(), receiverBalances.getInteger(currency.getName(), 0) + value);
         dataManager.save(sender);
         dataManager.save(receiver);
         return true;

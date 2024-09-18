@@ -106,12 +106,12 @@ public class SiShopPosition {
      */
     public SiNode toNode() {
         SiNode node = SiNode.emptyMap();
-        node.setString("uuid", uuid);
-        node.setString("owner", owner);
-        node.setString("date", String.valueOf(date));
-        node.setInteger("cost", cost);
-        node.setString("item_stack", Base64.getEncoder().encodeToString(itemStack.serializeAsBytes()));
-        node.setString("world", world);
+        node.set("uuid", uuid);
+        node.set("owner", owner);
+        node.set("date", String.valueOf(date));
+        node.set("cost", cost);
+        node.set("item_stack", Base64.getEncoder().encodeToString(itemStack.serializeAsBytes()));
+        node.set("world", world);
         return node;
     }
 }

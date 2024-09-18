@@ -85,7 +85,7 @@ public abstract class SiItemTexture {
             featureValues = new ArrayList<>(featureValues);
             if (!featureValues.contains(defaultValue)) featureValues.add(defaultValue);
             for (String featureValue : featureValues) {
-                customModelDataRecords.put(featureValue, new SiCustomModelDataRecord(itemType.getMaterial(), customModelDataCategory, itemType.getName() + "." + feature + "." + featureValue, SiNode.emptyMap().setString(feature, featureValue)));
+                customModelDataRecords.put(featureValue, new SiCustomModelDataRecord(itemType.getMaterial(), customModelDataCategory, itemType.getName() + "." + feature + "." + featureValue, SiNode.emptyMap().set(feature, featureValue)));
             }
         }
 

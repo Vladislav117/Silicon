@@ -43,7 +43,7 @@ public class SiEmojis {
         SiEvents.addHandler(SiBuiltinEvents.ResourcepackWriteStartEvent.class, event -> {
             SiNode registry = SiNode.emptyList();
             for (SiEmoji emoji : all.getAll()) {
-                registry.add(SiNode.emptyMap().setString("symbol", emoji.getSymbol()).setString("name", emoji.getName()));
+                registry.add(SiNode.emptyMap().set("symbol", emoji.getSymbol()).set("name", emoji.getName()));
             }
             SiResourcepack.addGroup("emoji", registry);
         });

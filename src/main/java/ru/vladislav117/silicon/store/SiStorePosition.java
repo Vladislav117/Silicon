@@ -157,7 +157,7 @@ public class SiStorePosition {
      * @return Количество покупок игроком.
      */
     public int getBuyCount(Player player) {
-        SiNode positionBuys = store.getData().get(name);
+        SiNode positionBuys = store.getData().getOrNull(name);
         if (positionBuys == null) return 0;
         return positionBuys.getInteger(player.getName(), 0);
     }
@@ -211,9 +211,9 @@ public class SiStorePosition {
                 }
                 store.getCurrency().addBalance(p.getName(), -cost);
                 buyHandler.handle(SiStorePosition.this, p);
-                SiNode positionBuys = store.getData().get(SiStorePosition.this.name);
+                SiNode positionBuys = store.getData().getOrNull(SiStorePosition.this.name);
                 if (positionBuys == null) store.getData().set(SiStorePosition.this.name, SiNode.emptyMap());
-                store.getData().get(SiStorePosition.this.name).setInteger(p.getName(), store.getData().get(SiStorePosition.this.name).getInteger(p.getName(), 0) + 1);
+                store.getData().getOrNull(SiStorePosition.this.name).set(p.getName(), store.getData().getOrThrown(SiStorePosition.this.name).getInteger(p.getName(), 0) + 1);
                 store.save();
                 store.open(p);
             });

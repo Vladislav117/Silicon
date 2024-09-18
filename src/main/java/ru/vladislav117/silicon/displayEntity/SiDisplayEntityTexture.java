@@ -82,10 +82,10 @@ public abstract class SiDisplayEntityTexture {
             this.feature = feature;
             this.defaultValue = defaultValue;
             if (!featureValues.contains(defaultValue)) {
-                customModelDataRecords.put(defaultValue, new SiCustomModelDataRecord(displayEntityType.getMaterial(), customModelDataCategory, displayEntityType.getName() + "." + feature + "." + defaultValue, SiNode.emptyMap().setString(feature, defaultValue)));
+                customModelDataRecords.put(defaultValue, new SiCustomModelDataRecord(displayEntityType.getMaterial(), customModelDataCategory, displayEntityType.getName() + "." + feature + "." + defaultValue, SiNode.emptyMap().set(feature, defaultValue)));
             }
             for (String featureValue : featureValues) {
-                customModelDataRecords.put(featureValue, new SiCustomModelDataRecord(displayEntityType.getMaterial(), customModelDataCategory, displayEntityType.getName() + "." + feature + "." + featureValue, SiNode.emptyMap().setString(feature, featureValue)));
+                customModelDataRecords.put(featureValue, new SiCustomModelDataRecord(displayEntityType.getMaterial(), customModelDataCategory, displayEntityType.getName() + "." + feature + "." + featureValue, SiNode.emptyMap().set(feature, featureValue)));
             }
         }
 

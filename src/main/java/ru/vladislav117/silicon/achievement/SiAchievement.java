@@ -149,12 +149,12 @@ public class SiAchievement extends SiContent {
     protected SiNode buildNode() {
         SiNode node = SiNode.emptyMap();
         node.set("display", display.buildNode());
-        if (parent != null) node.setString("parent", parent.getAdvancement().getKey().asString());
+        if (parent != null) node.set("parent", parent.getAdvancement().getKey().asString());
 
-        SiNode criteriaItems = SiNode.emptyList().addString("minecraft:knowledge_book");
+        SiNode criteriaItems = SiNode.emptyList().add("minecraft:knowledge_book");
         SiNode criteriaItem = SiNode.emptyMap().set("item", criteriaItems);
         SiNode criteriaConditions = SiNode.emptyMap().set("conditions", criteriaItem);
-        SiNode criteria = SiNode.emptyMap().setString("trigger", "minecraft:using_item").set("conditions", criteriaConditions);
+        SiNode criteria = SiNode.emptyMap().set("trigger", "minecraft:using_item").set("conditions", criteriaConditions);
         node.set("criteria", SiNode.emptyMap().set(name, criteria));
         return node;
     }

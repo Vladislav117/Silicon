@@ -88,6 +88,11 @@ public class SiCustomModelDataRecord {
      * @return Узел из записи.
      */
     public SiNode toNode() {
-        return SiNode.emptyMap().setInteger("custom_model_data", customModelData).setString("material", material.toString().toLowerCase(Locale.ROOT)).setString("category", category).setString("name", name).set("data", additionalData == null ? SiNode.emptyMap() : additionalData);
+        return SiNode.emptyMap()
+            .set("custom_model_data", customModelData)
+            .set("material", material.toString().toLowerCase(Locale.ROOT))
+            .set("category", category)
+            .set("name", name)
+            .set("data", additionalData == null ? SiNode.emptyMap() : additionalData);
     }
 }

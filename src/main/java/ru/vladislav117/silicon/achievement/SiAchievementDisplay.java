@@ -319,15 +319,15 @@ public class SiAchievementDisplay {
      */
     public SiNode buildNode() {
         SiNode node = SiNode.emptyMap();
-        SiNode iconNode = SiNode.emptyMap().setString("item", icon.name().toLowerCase(Locale.ROOT));
-        if (customModelData != null) iconNode.setString("nbt", "{\"CustomModelData\":" + customModelData + "}");
+        SiNode iconNode = SiNode.emptyMap().set("item", icon.name().toLowerCase(Locale.ROOT));
+        if (customModelData != null) iconNode.set("nbt", "{\"CustomModelData\":" + customModelData + "}");
         node.set("icon", iconNode);
         node.set("title", displayName.toJsonComponentNode());
         node.set("description", displayName.toJsonComponentNode());
-        node.setString("frame", frame.name().toLowerCase(Locale.ROOT));
-        node.setBoolean("show_toast", doesShowToast);
-        node.setBoolean("announce_to_chat", doesAnnounceToChat);
-        node.setBoolean("hidden", hidden);
+        node.set("frame", frame.name().toLowerCase(Locale.ROOT));
+        node.set("show_toast", doesShowToast);
+        node.set("announce_to_chat", doesAnnounceToChat);
+        node.set("hidden", hidden);
         return node;
     }
 }
