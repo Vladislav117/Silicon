@@ -1,0 +1,57 @@
+import silicondevelopmentplugin.SiliconDevelopmentPlugin
+
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+apply plugin: SiliconDevelopmentPlugin
+
+// Information
+
+group = 'ru.vladislav117.silicon'
+
+// Dependencies
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT'
+}
+
+// Java version
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+// Build
+
+tasks.jar {
+    archiveBaseName.set('Silicon')
+    archiveVersion.set(project.version.toString())
+}
+
+tasks.processResources {
+    filteringCharset = 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand('version': project.version)
+    }
+}
+
+// IDE
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

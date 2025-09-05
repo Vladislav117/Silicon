@@ -1,0 +1,12 @@
+local.properties
+
+# Build
+.gradle/
+build/
+
+# Editor
+.idea/
+.vscode/
+
+# OS
+.DS_Store

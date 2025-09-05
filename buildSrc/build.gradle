@@ -1,0 +1,32 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'idea'
+}
+
+// Dependencies
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compileOnly gradleApi()
+    compileOnly localGroovy()
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+    implementation 'com.github.mwiede:jsch:0.2.19'
+    implementation('com.github.Vladislav117:SimpleSFTP:0.0.0') {
+        exclude group: 'com.github.mwiede', module: 'jsch'
+    }
+    implementation 'com.github.Vladislav117:SimpleRCON:0.0.0'
+}
+
+// IDE
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

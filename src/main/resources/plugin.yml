@@ -1,0 +1,14 @@
+name: Silicon
+version: "${version}"
+
+# Plugin
+main: ru.vladislav117.silicon.SiliconPlugin
+api-version: "1.21.8"
+load: STARTUP
+prefix: Silicon
+
+# Information
+description: The Silicon framework is designed to simplify plugin development.
+author: Vladislav117
+authors: [ Vladislav117 ]
+website: https://github.com/Vladislav117/Silicon
